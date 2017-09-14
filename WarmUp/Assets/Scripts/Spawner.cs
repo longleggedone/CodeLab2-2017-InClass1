@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-	public Sprite[] sprites;
+	public GameObject[] sprites;
 
 	// Use this for initialization
 	void Start () {
@@ -23,10 +23,6 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void MakeSprite(int num){
-		GameObject goSprite = new GameObject();
-		SpriteRenderer sr = goSprite.AddComponent<SpriteRenderer>();
-		sr.sprite = sprites[num];
-
-		goSprite.AddComponent<Rigidbody2D>();
+		Instantiate (sprites[num], transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
 	}
 }
