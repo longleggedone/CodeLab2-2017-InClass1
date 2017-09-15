@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour {
 
 	public int score = 0;
+	public Text scoreText;
+	public Text gameOverText;
 
 	public float speed = 1f;
 	private GameObject playerColorSprite;
@@ -16,6 +19,7 @@ public class PlayerControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gameOverText.gameObject.SetActive(false);
 		playerColorSprite = transform.Find("ColorSprite").gameObject;
 	}
 
@@ -23,6 +27,7 @@ public class PlayerControl : MonoBehaviour {
 	void Update () {
 		transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
 
+		scoreText.text = ("SCORE: " + score);
 
 	}
 
@@ -52,7 +57,9 @@ public class PlayerControl : MonoBehaviour {
 				Destroy(col.gameObject);
 
 			} else if (colColor.name == playerColor.name){
-				Debug.Log(colColor);
+				gameOverText.gameObject.SetActive(true);
+				Destroy(this);
+				//Debug.Log(colColor);
 			} 
 		}
 	}
