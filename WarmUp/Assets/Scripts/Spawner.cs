@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-	public GameObject[] sprites;
+	public Sprite[] sprites;
+	public GameObject ball;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,7 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void MakeSprite(int num){
-		Instantiate (sprites[num], transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+		GameObject newBall = Instantiate (ball, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360))) as GameObject;
+		newBall.GetComponent<SpriteRenderer>().sprite = sprites[num];
 	}
 }
