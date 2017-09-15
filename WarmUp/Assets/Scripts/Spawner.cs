@@ -6,10 +6,12 @@ public class Spawner : MonoBehaviour {
 
 	public Sprite[] sprites;
 	public GameObject ball;
+	public float timeToStart = 1f;
+	public float timeBetween = 1f;
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("SpriteTime",1,1);
+		InvokeRepeating("SpriteTime",timeToStart, timeBetween);
 	}
 	
 	// Update is called once per frame
